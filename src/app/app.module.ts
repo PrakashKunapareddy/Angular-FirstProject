@@ -8,6 +8,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { LoserComponent } from './loser/loser.component';
 import { InputFieldsComponent } from './input-fields/input-fields.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { InputFieldsComponent } from './input-fields/input-fields.component';
     ErrorMessageComponent,
     SuccessMessageComponent,
     LoserComponent,
-    InputFieldsComponent
+    InputFieldsComponent,
+    LoginPageComponent
 
   ],
   imports: [
