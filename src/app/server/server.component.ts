@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: 'app-server', // --using as HTMl tag
@@ -8,5 +8,11 @@ import { Component } from "@angular/core";
     templateUrl:'./server.component.html'
 })
 export class ServerComponent{
+    @Input() status:boolean = true;
+    serverID: number = 10;
+    serverStatus = 'offline';
 
+    getServerStatus(){
+       return this.serverStatus;
+    }
 }

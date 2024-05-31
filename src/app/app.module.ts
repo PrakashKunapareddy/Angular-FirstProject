@@ -6,6 +6,8 @@ import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import { LoserComponent } from './loser/loser.component';
+import { InputFieldsComponent } from './input-fields/input-fields.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +15,10 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
     ServerComponent,
     ServersComponent,
     ErrorMessageComponent,
-    SuccessMessageComponent
-   
+    SuccessMessageComponent,
+    LoserComponent,
+    InputFieldsComponent
+
   ],
   imports: [
     BrowserModule
