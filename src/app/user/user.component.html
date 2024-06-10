@@ -1,0 +1,22 @@
+<div>
+         <li *ngFor="let item of selectedUsers;" >
+         <button  btn btn-primary>
+        <img [src]="'../../assets/users/' + item.avatar"  [alt]="'User Image'"/>
+        <span>{{item.name}}</span>
+        </button>
+        </li>
+</div>
+<br>
+<div>
+    <button btn btn-primary onclick="randomChange()">
+        <img [src]="'../../assets/users/'+RandomUsers.avatar" alt="User Image"  />
+        <span>
+           {{RandomUsers.name}}
+        </span>
+    </button>
+
+</div>
+
+
+
+    

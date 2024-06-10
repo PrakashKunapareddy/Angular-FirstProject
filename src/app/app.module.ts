@@ -7,25 +7,28 @@ import { ServersComponent } from './servers/servers.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { LoserComponent } from './loser/loser.component';
-import { InputFieldsComponent } from './input-fields/input-fields.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ServerComponent,
-    ServersComponent,
-    ErrorMessageComponent,
-    SuccessMessageComponent,
-    LoserComponent,
-    InputFieldsComponent,
-    LoginPageComponent
-
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ServerComponent,
+        ServersComponent,
+        ErrorMessageComponent,
+        SuccessMessageComponent,
+        LoserComponent,
+        LoginPageComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        UserComponent
+    ]
 })
 export class AppModule { }

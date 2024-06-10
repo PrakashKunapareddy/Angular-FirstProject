@@ -12,7 +12,7 @@ export class LoginPageComponent {
   constructor() { }
 
   login() {
-    // Here you can add your login logic
+    
     console.log('Username:', this.username);
     console.log('Password:', this.password);
   }
