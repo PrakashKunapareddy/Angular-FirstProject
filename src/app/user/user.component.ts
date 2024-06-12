@@ -10,20 +10,26 @@ import { BrowserModule } from '@angular/platform-browser';
   standalone:true,
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
-  imports:[CommonModule,BrowserModule]
+  imports:[BrowserModule,CommonModule],
 })
+
 
 
 export class UserComponent {
    selectedUsers:any = [];
    RandomUsers:any;
-
+  
   constructor(){
-   this.selectedUsers = DUMMY_USERS;
-   this.RandomUsers= Math.floor(Math.random()*this.selectedUsers.length);
+   this.selectedUsers = DUMMY_USERS; 
+   let index = Math.floor(Math.random()*this.selectedUsers.length);
+   this.RandomUsers= this.selectedUsers[index];  
+   console.log(this.RandomUsers,index)
   }
-  randomChange(): void {
-    this.RandomUsers= Math.floor(Math.random()*this.selectedUsers.length);
+  
+  randomChange(): any {
+    let index = Math.floor(Math.random()*this.selectedUsers.length);
+    this.RandomUsers= this.selectedUsers[index];
+    console.log(this.RandomUsers)
    }
 
 }

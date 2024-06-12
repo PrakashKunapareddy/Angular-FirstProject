@@ -11,6 +11,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
+import { HomeworkComponent } from './homework/homework.component';
+
 
 @NgModule({
     declarations: [
@@ -28,7 +30,8 @@ import { UserComponent } from './user/user.component';
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        UserComponent
+        UserComponent,
+        HomeworkComponent
     ]
 })
 export class AppModule { }
