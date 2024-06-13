@@ -11,6 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomeworkComponent implements OnInit {
 
   CompanyArr: any = [];
+  PersonDetailsArr: any[] = [];
+
+
 
   sample_data1 = [
     {
@@ -296,10 +299,11 @@ export class HomeworkComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this.Assessment();
+    this.Assessment1();
+    this.Assessment2();
   }
 
-  Assessment(): any {
+  Assessment1(): any {
     for (const formComp of this.sample_data1) {
       const CompanyObj = {
         Comapanyname: formComp.companyName,
@@ -339,9 +343,53 @@ export class HomeworkComponent implements OnInit {
     }
     console.log(this.CompanyArr);
   }
+  
+  Assessment2(): any {
+    for (const alignPersonDetails of this.sample_data2) {
+      const personDetailObj = {
+        PersonName: alignPersonDetails.person.name,
+        PersonAge: alignPersonDetails.person.age,
+        Address: alignPersonDetails.person.address.street + "," + alignPersonDetails.person.address.city + "," + alignPersonDetails.person.address.zipcode,
+        Contact: [],
+        Employement_pos: alignPersonDetails.person.employment.position,
+        Employement_company: alignPersonDetails.person.employment.company,
+        Employement_workHistory: [],
+        Skills: alignPersonDetails.person.skills,
+      };
+      for (const alignContact of alignPersonDetails.person.contacts) {
+        if (alignContact.type === "email") {
+          personDetailObj.Contact.push("email: " + alignContact.value);
+        }
+        else if (alignContact.type === "phone") {
+          personDetailObj.Contact.push("phone: " +alignContact.value)
+        }
+      }
+      for (const workHistory of alignPersonDetails.person.employment.workHistory) {
+        var startYear = workHistory.startYear !== null ? workHistory.startYear : " ";
+        var endYear = workHistory.endYear !== null ? workHistory.endYear : " ";
+        var title = workHistory.title !== null ? workHistory.title : " ";
+        const emp = startYear + " to " + endYear + " - " + title
+        personDetailObj.Employement_workHistory.push(emp);
+      }
+      const hobObj = {
+        indoor: [alignPersonDetails.hobbies.indoor],
+        Outdoor: [alignPersonDetails.hobbies.outdoor],
+      }
+      const petsObj = [alignPersonDetails.pets]
+      const O = {
+        Person: personDetailObj,
+        Hobbies: hobObj,
+        Pets: petsObj
+      }
+      this.PersonDetailsArr.push(O);
+    }
+    console.log(this.PersonDetailsArr);
+  }
 
 
 
 }
+
+
 
 
