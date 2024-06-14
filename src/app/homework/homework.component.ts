@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -12,6 +13,8 @@ export class HomeworkComponent implements OnInit {
 
   CompanyArr: any = [];
   PersonDetailsArr: any[] = [];
+  samp3: any[];
+  datepipe = new DatePipe("en-US");
 
 
 
@@ -297,10 +300,69 @@ export class HomeworkComponent implements OnInit {
       "pets": []
     }
   ]
+  sample_data3 = [
+    {
+      "result": true,
+      "statusCode": 200,
+      "statusCodeDescription": "OK",
+      "message": null,
+      "response":
+        [
+          {
+            "rfpNumber": "2306141140",
+            "rfpDetails": null,
+            "offerWiseRfpDetails":
+            {
+              "Round":
+                [
+                  {
+                    "responseRfpId": "4cd7fa6f-aa17-4460-8ad1-b6cecbc01add",
+                    "version": "b994b65b-bc6f-4699-b443-c09851b8217e",
+                    "rfpId": "8c9863b5-d55e-474b-bf46-14c15b0d0278",
+                    "rfpNumber": "2306141140",
+                    "status": "Locked",
+                    "description": "testing plz",
+                    "dueDate": "2023-06-22",
+                    "receivedDate": "2023-06-14",
+                    "submittedDate": "1686812409559",
+                    "offer": "Round",
+                    "assignedTo": null,
+                    "supplierId": "fbebeee5-6ccd-47d0-aa96-92a03defe42b",
+                    "supplierName": "VAMSHI",
+                    "submittedBy": null,
+                    "fibers": [
+                      "NBSK"
+                    ],
+                    "updatedBy": "Sridhar one",
+                    "createdBy": null,
+                    "reference": 12345,
+                    "commentsJson": null,
+                    "millDetails": null,
+                    "filesPathJson": null,
+                    "rfpAdditionalAttributes": null,
+                    "updatedTs": "2023-06-15 12:30:09.559",
+                    "insertTs": "2023-06-14 17:10:54.017",
+                    "rfpJsonTemplate": null,
+                    "awardOfContract": null,
+                    "noOfSupplierReceivedRfp": null,
+                    "noOfSupplierRespondedToRfp": null,
+                    "rfpType": "Annual",
+                    "supplierNames": null,
+                    "millNames": null,
+                    "isRead": null
+                  }
+                ]
+            },
+            "offerWiseSupplierRfpDetails": null
+          }
+        ]
+    }
+  ]
 
   ngOnInit(): void {
     this.Assessment1();
     this.Assessment2();
+    this.Assessment3();
   }
 
   Assessment1(): any {
@@ -343,7 +405,7 @@ export class HomeworkComponent implements OnInit {
     }
     console.log(this.CompanyArr);
   }
-  
+
   Assessment2(): any {
     for (const alignPersonDetails of this.sample_data2) {
       const personDetailObj = {
@@ -361,7 +423,7 @@ export class HomeworkComponent implements OnInit {
           personDetailObj.Contact.push("email: " + alignContact.value);
         }
         else if (alignContact.type === "phone") {
-          personDetailObj.Contact.push("phone: " +alignContact.value)
+          personDetailObj.Contact.push("phone: " + alignContact.value)
         }
       }
       for (const workHistory of alignPersonDetails.person.employment.workHistory) {
@@ -386,7 +448,20 @@ export class HomeworkComponent implements OnInit {
     console.log(this.PersonDetailsArr);
   }
 
+  Assessment3(): any {
+    const alignData: any[] = this.sample_data3[0].response;
+    alignData[0]['offerWiseRfpDetails']['Round'][0]['dueDate'] = this.formateDate(alignData[0]['offerWiseRfpDetails']['Round'][0]['dueDate'])
+    alignData[0]['offerWiseRfpDetails']['Round'][0]['receivedDate'] = this.formateDate(alignData[0]['offerWiseRfpDetails']['Round'][0]['receivedDate'])
+    alignData[0]['offerWiseRfpDetails']['Round'][0]['submittedDate'] = this.formateDate(alignData[0]['offerWiseRfpDetails']['Round'][0]['submittedDate'])
+    alignData[0]['offerWiseRfpDetails']['Round'][0]['updatedTs'] = this.formateDate(alignData[0]['offerWiseRfpDetails']['Round'][0]['updatedTs'])
+    alignData[0]['offerWiseRfpDetails']['Round'][0]['insertTs'] = this.formateDate(alignData[0]['offerWiseRfpDetails']['Round'][0]['insertTs'])
+    console.log(alignData)
+  }
 
+  formateDate(date: string) {
+    const newDate = this.datepipe.transform(date,"MM/dd/yy");
+    return newDate;
+  }
 
 }
 
