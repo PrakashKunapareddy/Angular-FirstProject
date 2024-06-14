@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { HomeworkComponent } from './homework/homework.component';
+import { HomeworkTwoComponent } from './homework-two/homework-two.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { HomeworkComponent } from './homework/homework.component';
         FormsModule,
         HttpClientModule,
         UserComponent,
-        HomeworkComponent
+        HomeworkComponent,
+        HomeworkTwoComponent,
     ]
 })
 export class AppModule { }

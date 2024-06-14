@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { HomeworkTwoComponent } from '../homework-two/homework-two.component';
 
 
 @Component({
