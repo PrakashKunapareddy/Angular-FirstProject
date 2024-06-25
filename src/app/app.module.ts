@@ -13,6 +13,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { HomeworkComponent } from './homework/homework.component';
 import { HomeworkTwoComponent } from './homework-two/homework-two.component';
+import { HeaderComponent } from './header.component';
+import { FormexampleComponent } from './login-page/formexample/formexample.component';
+import { ButtonUDComponent } from './button-ud/button-ud.component';
 
 
 @NgModule({
@@ -23,7 +26,7 @@ import { HomeworkTwoComponent } from './homework-two/homework-two.component';
         ErrorMessageComponent,
         SuccessMessageComponent,
         LoserComponent,
-        LoginPageComponent,
+        LoginPageComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -34,6 +37,10 @@ import { HomeworkTwoComponent } from './homework-two/homework-two.component';
         UserComponent,
         HomeworkComponent,
         HomeworkTwoComponent,
+        HeaderComponent,
+        ButtonUDComponent,
+        FormexampleComponent,
+
     ]
 })
 export class AppModule { }
