@@ -1,42 +1,12 @@
 form{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-    border: 3px solid white;}
-input{
-    margin: 10px;
-    margin-left: 25px;
-    color: black;
-}
-textarea{
-    margin-left: 0px;
-    margin-right: 20px;
-    width: 175px;
-    color: black;
+    margin-top: -20px;
+    margin-left: -50px;
+    border: 3px solid white;
+padding: 20px;
+width: 1000px;}
+    input,textarea{
+        color: #000;
+    }
 
-}
-label{
-    margin: 10px;
-}
-p{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction:row;
-    justify-content:center;
-    align-items: center;
-}
-button{
-    display: flex;
-    align-self:flex-end ;
-    color: black;
-    background-color: white;
-}
-buttonappButtonUD{
-    display: flex;
-    align-self:flex-end ;
-    color: black;
-    background-color: white;    
-}
+    
+

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { HomeworkComponent } from '../homework/homework.component';
-import { STRING_TYPE } from '@angular/compiler';
 import { ButtonUDComponent } from '../button-ud/button-ud.component';
+import { Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-homework-two',

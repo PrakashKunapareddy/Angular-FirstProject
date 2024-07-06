@@ -3,32 +3,34 @@
         <form action="">
             <span *ngFor="let item of TechnicalFootPrint;let i = index">
                 <h5>
-                   {{i+1}}. &nbsp;{{item.Question}}
+                    {{i+1}}.
+                    {{item.Question}}
                 </h5>
                 <span *ngFor="let option of item.Options;">
                     <td *ngIf="[option.Option] == 'Yes' || [option.Option] == 'No' || [option.Option] == 'Hybrid'">
-                        <input type="radio" [id]="option.Id" [name]="item.Question" required />
+                        <input type="radio" [id]="option.Id" [name]="item.Question" [formcontrolname]="option.Id" />
                         <label [for]="item.Question"> {{option.Option}}</label>
                         <span>
                     <td
                         *ngIf="[option.Option] == 'No' && item.Question == 'Is all hardware and software maintained and owned by the organization?'">
-                        <input type="text" [id]="option.Id" [name]="item.Question" />
+                        <input type="text" [id]="option.Id" [name]="item.Question" [formcontrolname]="option.Id" />
                     </td>
                 </span>
                 </td>
                 <td *ngIf="[option.Option] == 'Explain'">
-                    <textarea type="text" [id]="option.Id" [name]="item.Question"></textarea>
+                    <textarea type="text" [id]="option.Id" [name]="item.Question"
+                        [formcontrolname]="option.Id"></textarea>
                 </td>
                 <td *ngIf="[option.Option] == 'Input Numbers'">
-                    <input type="number" [id]="option.Id" [name]="item.Question" />
+                    <input type="number" [id]="option.Id" [name]="item.Question" [formcontrolname]="option.Id" />
                 </td>
                 <td
                     *ngIf="[option.Option] != 'Input Numbers' && [option.Option] != 'Explain' && [option.Option] != 'Yes' && [option.Option]!= 'No' && [option.Option] != 'Hybrid'">
-                    <input type="checkbox" [id]="option.Id" [name]="item.Question" />
+                    <input type="checkbox" [id]="option.Id" [name]="item.Question" [formcontrolname]="option.Id" />
                     <label [for]="option"> {{option.Option}}</label>
                     <span>
                 <td *ngIf="[option.Option] == 'Other'">
-                    <input type="text" [id]="option.Id" [name]="item.Question" />
+                    <input type="text" [id]="option.Id" [name]="item.Question" [formcontrolname]="option.Id" />
                 </td>
             </span>
             </td>

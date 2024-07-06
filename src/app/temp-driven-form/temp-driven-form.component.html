@@ -1,0 +1,86 @@
+<div class="container">
+    <form action="" (ngSubmit)="view(f)" #f="ngForm">
+        <h1>Template-Driven Forms</h1>
+        <div>
+            <span class="firstDivison">
+                <p>
+                    <label for="username">{{FormFillingData[0]}}</label>
+                    <input type="text" name="username" class="form-control" ngModel required #username="ngModel"
+                        pattern="[a-zA-Z]{0,15}" (keypress)="onlyAlphabets($event)" />
+                    <small class="help-block"
+                        *ngIf="(username.value === null) && username.touched">{{errorMessage}}</small>
+                    <small class="help-block"
+                        *ngIf="!(username.value === null) && username.touched && !username.valid && username.errors?.pattern">{{errorMessage1}}</small>
+                </p>
+                <p>
+                    <label for="Email">{{FormFillingData[1]}}</label>
+                    <input type="email" name="Email" class="form-control" ngModel required #Email="ngModel" email />
+                    <small class="help-block"
+                        *ngIf="!Email.valid && Email.touched && Email.value.length==0">{{errorMessage}}</small>
+                    <small class="help-block"
+                        *ngIf="!Email.valid && Email.touched && !(Email.value.length==0)">{{errorMessage1}}</small>
+                </p>
+                <p>
+                    <label for="PhoneNumber">Phone Number:</label>
+                    <input type="tel" name="PhoneNumber" class="form-control" [(ngModel)]="phoneNumber"
+                        #phoneNumberInput="ngModel" required pattern="[789][0-9]{9}" (keypress)="onKeyPress($event)" />
+                    <small class="help-block" *ngIf="phoneNumberInput.errors?.required && phoneNumberInput.touched">
+                        {{errorMessage}}
+                    </small>
+                    <small class="help-block"
+                        *ngIf="phoneNumberInput.errors?.pattern && (phoneNumber.startsWith('9')||phoneNumber.startsWith('8')||phoneNumber.startsWith('7'))">
+                        {{errorMessage1}}
+                    </small>
+                    <small class="help-block"
+                        *ngIf="!(phoneNumber.startsWith('9')||phoneNumber.startsWith('8')||phoneNumber.startsWith('7')) && phoneNumberInput.errors?.pattern">
+                        Phone number must start with 9 or 8 or 7
+                    </small>
+                </p>
+                <p><label for="SelectCourse">{{FormFillingData[3]}}</label>
+                    <select name="SelectCourse" id="Course Type" class="form-control" ngModel #SelectCourse="ngModel"
+                        required>
+                        <option value="" disabled selected>Select Course</option>
+                        <option value="UI">UI</option>
+                        <option value="Backend">Backend</option>
+                        <option value="Automation">Automation</option>
+                    </select>
+                </p>
+                <p><label for="Password">{{FormFillingData[4]}}</label>
+                    <span class="form-control">
+                        <input [type]="type" name='Password' [id]="FormFillingData[4]" ngModel required
+                            #Password="ngModel"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$" />
+                        <span class="password-toggle-icon"><b [class]="passWordEYE" (click)="viewData()"></b></span>
+                    </span>
+                    <small class="help-block"
+                        *ngIf=" (Password.value === null) && Password.touched">{{errorMessage}}</small>
+                    <small class="help-block"
+                        *ngIf="!Password.valid && Password.errors?.pattern">{{errorMessage1}}</small>
+
+                </p>
+                <button type="Submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+            </span>
+        </div>
+        <div>
+            <span class="SecondDivision">
+                <h2>User Data:</h2>
+                <h5>
+                    {{printUsername}}
+                </h5>
+                <h5>
+                    {{printEmail}}
+                </h5>
+                <h5>
+                    {{printPhoneNumber}}
+                </h5>
+                <h5>
+                    {{printPassword}}
+                </h5>
+            </span>
+        </div>
+
+
+    </form>
+
+
+</div>

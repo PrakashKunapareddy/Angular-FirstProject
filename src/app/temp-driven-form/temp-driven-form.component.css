@@ -1,0 +1,67 @@
+.container {
+    background-color: azure;
+    color: black;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serifs;
+
+}
+
+.firstDivison {
+    display: flex;
+    border: 3px solid blueviolet;
+    ;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 15px;
+    align-items: flex-start;
+}
+
+.password-toggle-icon {
+    cursor: pointer;
+    color: black;
+
+}
+.password-toggle-icon :hover{
+    color: blue;
+
+}
+
+
+input,
+select {
+    width: 300px;
+}
+
+p {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+label::after{
+    content: '*'; 
+    color: red;   
+  }
+  
+button {
+    position: absolute;
+    margin-left: 950px;
+    margin-top: 150px;
+
+}
+input.ng-invalid.ng-touched{
+    border: 2px solid rgba(241, 86, 65, 0.938);
+}
+small.help-block{
+    color: Red;
+}
+.SecondDivision{
+    display: flex;
+    flex-direction: column;
+
+}
