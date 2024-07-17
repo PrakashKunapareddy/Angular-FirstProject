@@ -46,9 +46,9 @@
                     </select>
                 </p>
                 <p><label for="Password">{{FormFillingData[4]}}</label>
-                    <span class="form-control">
+                    <span class="form-group">
                         <input [type]="type" name='Password' [id]="FormFillingData[4]" ngModel required
-                            #Password="ngModel"
+                            #Password="ngModel" class="form-control"
                             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$" />
                         <span class="password-toggle-icon"><b [class]="passWordEYE" (click)="viewData()"></b></span>
                     </span>

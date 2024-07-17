@@ -1,0 +1,136 @@
+.container {
+    background-color: azure;
+    color: black;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serifs;
+
+}
+
+.firstDivison {
+    display: flex;
+    border: 3px solid blueviolet;
+    margin: 10px;
+    padding: 15px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.password-toggle-icon {
+    cursor: pointer;
+    color: black;
+
+}
+
+.password-toggle-icon :hover {
+    color: blue;
+
+}
+
+
+
+
+
+input,
+select {
+    width: 300px;
+}
+
+p {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label::after {
+    content: '*';
+    color: red;
+}
+
+button {
+    position: relative;
+    margin-left: 950px;
+    margin-top: 1px;
+
+}
+
+.addLang {
+    position: absolute  ;
+    border-radius: 100%;
+    background-color: white;
+    border: 2px solid bisque;
+    margin-left: 160px;
+    margin-top: -30px;
+
+}
+
+.addLang:active {
+    cursor: pointer;
+}
+
+.addLang:disabled {
+    cursor: no-drop;
+}
+
+input.ng-invalid.ng-touched {
+    border: 2px solid rgba(241, 86, 65, 0.938);
+}
+
+select.ng-pristine.ng-touched {
+    border: 2px solid rgba(241, 86, 65, 0.938);
+}
+
+small.help-block {
+    color: Red;
+}
+
+b {
+    position: absolute;
+    margin-top: -28px;
+    margin-left: 280px;
+}
+
+div.form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h5 {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+.LangField{
+    margin-top: -25px;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+i{
+    padding-left: 9px;
+}
+.bi-trash{
+    cursor: pointer;
+}
+.errorForFormControl{
+    display: flex;
+    flex-direction: column;
+}
+.errorFormField {
+    border: 2px solid red !important;
+}
+.down{
+    margin-top: 80px;
+    margin-left: -15S0px;
+}
+

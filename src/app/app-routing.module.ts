@@ -5,12 +5,14 @@ import { FormexampleComponent } from "./login-page/formexample/formexample.compo
 import { HomeworkTwoComponent } from "./homework-two/homework-two.component";
 import { TempDrivenFormComponent } from "./temp-driven-form/temp-driven-form.component";
 import { UserComponent } from "./user/user.component";
+import { ReactiveFormComponent } from "./reactive-form/reactive-form.component";
 
-const route: Routes = [{path: '',redirectTo:"UserComp",pathMatch:"full" },
-    { path: "formExample", component: FormexampleComponent },
-    { path: "homeWorktwo", component: HomeworkTwoComponent },
-    { path: "tempDrivenForm", component: TempDrivenFormComponent},
-    {path: "UserComp", component:UserComponent},
+const route: Routes = [{ path: '', redirectTo: "UserComp", pathMatch: "full" },
+{ path: "formExample", component: FormexampleComponent },
+{ path: "homeWorktwo", component: HomeworkTwoComponent },
+{ path: "tempDrivenForm", component: TempDrivenFormComponent },
+{ path: "UserComp", component: UserComponent },
+{ path: "reactiveform", component: ReactiveFormComponent }
 ]
 
 @NgModule({

@@ -24,6 +24,9 @@ h1 {
 .password-toggle-icon {
     cursor: pointer;
     color: black;
+    position: absolute;
+    margin-top: -28px;
+    margin-left: 280px;
 
 }
 .password-toggle-icon :hover{
@@ -61,7 +64,17 @@ small.help-block{
     color: Red;
 }
 .SecondDivision{
+    width: 700px;
     display: flex;
     flex-direction: column;
 
+}
+h5{
+    width: 300px;
+}
+h5:hover{
+font-weight: bolder;
+font-size: large;
+text-decoration: double;
+transition-duration: 10s;
 }

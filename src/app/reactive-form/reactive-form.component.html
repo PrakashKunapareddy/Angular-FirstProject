@@ -1,0 +1,127 @@
+<div class="container">
+    <form action="">
+        <h1>Reactive Forms</h1>
+        <div>
+            <span class="firstDivison">
+                <form action="" [formGroup]="signUpForm" (ngSubmit)="OnSubmit()">
+                    <p class="form-group">
+                        <label for="Username">Username:</label>
+                        <input class="form-control" formControlName="Username" (keypress)="onlyAlphabets($event)"
+                            pattern="[a-zA-Z]{0,15}" />
+                        <small
+                            *ngIf="!(signUpForm.get('Username').valid) && signUpForm.get('Username').touched && !usernamePatternError()"
+                            class="help-block">{{errorMessage}}</small>
+                        <small *ngIf="usernamePatternError()" class="help-block">{{errorMessage1}}</small>
+
+                    </p>
+                    <p class="form-group">
+                        <label for="Email">Email:</label>
+                        <input class="form-control" formControlName="Email" />
+                        <small *ngIf="!(signUpForm.get('Email').valid) && signUpForm.get('Email').touched"
+                            class="help-block">{{errorMessage}}</small>
+
+                    </p>
+                    <p class="form-group">
+                        <label for="PhoneNumber">Phone Number:</label>
+                        <input class="form-control" formControlName="Phone Number" (keypress)="onlyNumbers($event)" />
+                        <small
+                            *ngIf="(signUpForm.get('Phone Number').errors?.required) && signUpForm.get('Phone Number').touched"
+                            class="help-block">{{errorMessage}}
+                        </small>
+                        <small
+                            *ngIf="signUpForm.get('Phone Number').errors?.pattern && signUpForm.get('Phone Number').touched"
+                            class="help-block">{{errorMessage1}}
+                        </small>
+                    </p>
+                    <p class="form-group">
+                        <label for="SelectCourse">Select Course:</label>
+                        <select name="SelectCourse" id="Course Type" class="form-control"
+                            formControlName="Select Course" required>
+                            <option [value]='dropdownDefaultSelect' disabled selected>{{dropdownDefaultSelect}}</option>
+                            <option value="UI">UI</option>
+                            <option value="Backend">Backend</option>
+                            <option value="Automation">Automation</option>
+                        </select>
+                        <small
+                            *ngIf="!(signUpForm.get('Select Course').dirty) && signUpForm.get('Select Course').touched"
+                            class="help-block">{{errorMessage}}</small>
+                    </p>
+                    <p class="form-group">
+                        <label for="Passwoord">Password:</label>
+                        <span class="form-group">
+                            <input class="form-control" formControlName="Password" [type]="type" />
+                            <span class="password-toggle-icon"><b [class]="passWordEYE" (click)="viewData()"></b></span>
+                            <small
+                                *ngIf="!(signUpForm.get('Password').errors?.required) && signUpForm.get('Password').touched && !signUpForm.get('Password').valid"
+                                class="help-block">{{errorMessage1}}</small>
+                            <small
+                                *ngIf="!(signUpForm.get('Password').errors?.pattern) && signUpForm.get('Password').touched && !signUpForm.get('Password').valid"
+                                class="help-block">{{errorMessage}}</small>
+                        </span>
+                    </p>
+                    <div formArrayName="Languages">
+                        <h5>Languages Known</h5>
+                        <button class="addLang" type="button" (click)="OnAddLanguage()"
+                            [disabled]="addButtonValidate()">+</button>
+                        <br>
+                        <div class="form-group" *ngFor="let langControl of getLanguages.controls; let i = index">
+                            <span class="LangField">
+                                <span class="errorForFormControl">
+                                    <input type="text" class="form-control" [formControlName]="i">
+                                    <small
+                                        *ngIf="formControlErrorsInFormArray(i) && !(signUpForm.get('Languages').valid) && signUpForm.get('Languages').touched"
+                                        class="help-block">Fill The Empty Field!</small>
+                                </span>
+                                <i class="bi bi-trash" (click)="deleteField(i)"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="Submit" class="btn btn-primary" [disabled]="signUpForm.errors?.required || signUpForm.invalid || signUpForm.errors?.pattern">Submit</button>
+                </form>
+            </span>
+        </div>
+        <h2>User Data:</h2>
+        <div class="down">
+            <div class="row mx-md-n5">
+                <div class="col px-md-5">
+                    <div class="p-3 border bg-light">
+                        <h5>
+                            {{signUpForm.get('Username').value}}
+                        </h5>
+                        <h5>
+                            {{signUpForm.get('Email').value}}
+                        </h5>
+                        <h5>
+                            {{signUpForm.get('Phone Number').value}}
+                        </h5>
+                        <h5>
+                            {{signUpForm.get('Password').value}}
+                        </h5>
+                        <h5>
+                            {{signUpForm.get('Languages').value}}
+                        </h5>
+                    </div>
+                </div>
+                <div class="col px-md-5">
+                    <div class="p-3 border bg-light">
+                        <h5>
+                            {{printUsername}}
+                        </h5>
+                        <h5>
+                            {{printEmail}}
+                        </h5>
+                        <h5>
+                            {{printPhoneNumber}}
+                        </h5>
+                        <h5>
+                            {{printPassword}}
+                        </h5>
+                        <h5>
+                            {{printLanguages}}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
