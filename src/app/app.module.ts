@@ -19,6 +19,7 @@ import { ButtonUDComponent } from './button-ud/button-ud.component';
 import { AppRouting } from './app-routing.module';
 import { TempDrivenFormComponent } from './temp-driven-form/temp-driven-form.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { TechnicalFootPrintComponent } from './technical-foot-print/technical-foot-print.component';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     LoserComponent,
     LoginPageComponent,
     TempDrivenFormComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    TechnicalFootPrintComponent
+
   ],
   providers: [
     {
@@ -52,8 +55,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     ButtonUDComponent,
     FormexampleComponent,
     AppRouting,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ]
 })
 

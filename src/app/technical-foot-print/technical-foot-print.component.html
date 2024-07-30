@@ -1,0 +1,33 @@
+<div *ngIf="TechnicalFootprintDisplay">
+    <button class="btn btn-primary" (click)="Assessment()">Technical FootPrint</button>
+</div>
+<div *ngIf="!TechnicalFootprintDisplay">
+    <div style="border: 2px solid white; background-color: beige; color: black; padding: 50px;">
+        <form [formGroup]="form" (ngSubmit)="OnSubmit()">
+            <div formArrayName="questions">
+                <div *ngFor="let question of form.get('questions').controls; let i = index" [formGroupName]="i">
+                    <h3>{{i + 1}}. {{question.get('Question').value}}</h3>
+                    <div formArrayName="Options">
+                        <div *ngFor="let option of question.get('Options').controls; let j = index" [formGroupName]="j">
+                            <input type="radio" formControlName="OptionChecked" [value]="true" *ngIf="question.get('QuestionId').value === 1 || question.get('QuestionId').value === 11" />
+                            <input type="checkbox" formControlName="OptionChecked" *ngIf="question.get('QuestionId').value !== 1 && question.get('QuestionId').value !== 11 && question.get('QuestionId').value !== 10 && question.get('QuestionId').value !== 15 && question.get('QuestionId').value !== 9" />
+                            <input type="text" class="form-control" formControlName="OptionValue" *ngIf="question.get('QuestionId').value === 9" (keypress)="onKeyPress($event)" />
+                            <textarea class="form-control" formControlName="OptionValue" *ngIf="question.get('QuestionId').value === 10 || question.get('QuestionId').value === 15"></textarea>
+                            <span *ngIf="question.get('QuestionId').value !== 10 && question.get('QuestionId').value !== 15 && question.get('QuestionId').value !== 9">
+                                {{option.get('OptionName').value}}
+                            </span>
+                            <div *ngIf="option.get('OptionName').value === 'Other' && option.get('OptionChecked').value">
+                                <input class="form-control" formControlName="OptionValue" class="form-control" type="text" placeholder="Enter Here..." />
+                            </div>
+                            <div *ngIf="option.get('OptionName').value === 'No' && option.get('OptionChecked').value && question.get('QuestionId').value === 11" >
+                                <input class="form-control" formControlName="OptionValue" class="form-control" type="text" placeholder="Enter Here..."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-light" type="button" (click)="TechnicalFootprintDisplay = true" style="margin: 10px;">Cancel</button>
+            <button class="btn btn-primary" type="submit" style="margin: 10px;">Submit</button>
+        </form>
+    </div>
+</div>

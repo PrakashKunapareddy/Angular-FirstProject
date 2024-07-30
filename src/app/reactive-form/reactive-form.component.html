@@ -17,8 +17,10 @@
                     <p class="form-group">
                         <label for="Email">Email:</label>
                         <input class="form-control" formControlName="Email" />
-                        <small *ngIf="!(signUpForm.get('Email').valid) && signUpForm.get('Email').touched"
+                        <small *ngIf="(signUpForm.get('Email').errors?.required) && signUpForm.get('Email').touched"
                             class="help-block">{{errorMessage}}</small>
+                            <small *ngIf="!(signUpForm.get('Email').errors?.required) && signUpForm.get('Email').touched && signUpForm.get('Email').errors?.pattern"
+                            class="help-block">{{errorMessage1}}</small>
 
                     </p>
                     <p class="form-group">
@@ -32,6 +34,10 @@
                             *ngIf="signUpForm.get('Phone Number').errors?.pattern && signUpForm.get('Phone Number').touched"
                             class="help-block">{{errorMessage1}}
                         </small>
+                        <small class="help-block"
+                        *ngIf="phoneNumberInvalidFirstDigit && !signUpForm.get('Phone Number').errors?.pattern">
+                        Phone number must start with 9 or 8 or 7
+                    </small>
                     </p>
                     <p class="form-group">
                         <label for="SelectCourse">Select Course:</label>

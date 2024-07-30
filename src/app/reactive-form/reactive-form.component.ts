@@ -20,27 +20,19 @@ export class ReactiveFormComponent implements OnInit {
   printEmail: any;
   printPhoneNumber: any;
   printPassword: any;
-  printLanguages:any;
+  printLanguages: any;
 
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
       'Username': new FormControl(null, [Validators.required, Validators.maxLength(15)]),
-      'Email': new FormControl(null, [Validators.required, Validators.email]),
-      'Phone Number': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[987]\d{9}$/)]),
+      'Email': new FormControl(null, [Validators.required, Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]),
+      'Phone Number': new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.pattern(/[0-9]{10}/)]),
       'Select Course': new FormControl(this.dropdownDefaultSelect, [Validators.required]),
       'Password': new FormControl(null, [Validators.required, Validators.maxLength(15), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/)]),
       'Languages': new FormArray([])
     })
     this.viewData();
-    // this.signUpForm.get('Phone Number').valueChanges.subscribe(x => {
-    //   console.log(x)
-    // });
-    // this.signUpForm.get('Phone Number').statusChanges.subscribe(y => {
-    //   console.log(y);
-    // })
-
-
   }
 
 
@@ -97,7 +89,6 @@ export class ReactiveFormComponent implements OnInit {
     const phoneNumberValue = this.signUpForm.get('Phone Number').value;
     if (phoneNumberValue && phoneNumberValue.length === 10) {
       const firstDigit = phoneNumberValue.charAt(0);
-      console.log("testtttt", firstDigit);
       return !(firstDigit === '9' || firstDigit === '8' || firstDigit === '7');
     }
     return false;
