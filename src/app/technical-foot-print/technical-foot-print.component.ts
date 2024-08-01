@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormArray, FormGroup, FormControl } from '@angular/forms';
-import { ReactiveFormComponent } from '../reactive-form/reactive-form.component';
 
 @Component({
   selector: 'app-technical-foot-print',
@@ -33,16 +32,16 @@ export class TechnicalFootPrintComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // this.form.valueChanges.subscribe(change => {
-    //   console.log(change)
-    // })
+  saveData() {
+
   }
+
+  ngOnInit() { }
 
   populateTheForm() {
     const questionsArray = this.form.get('questions') as FormArray;
 
-    this.TechnicalFootPrint.forEach((data: any) => {
+    this.TechnicalFootPrint.forEach((data) => {
       const optionsArray = new FormArray([]);
 
       data.Options.forEach((opt: any) => {
@@ -59,14 +58,13 @@ export class TechnicalFootPrintComponent implements OnInit {
       const formGroup = new FormGroup({
         QuestionId: new FormControl(data.QuestionId),
         Question: new FormControl(data.Question),
-        // SelectOption : new FormArray(null),
         Options: optionsArray
       });
+
       questionsArray.push(formGroup);
     });
     console.log(questionsArray);
   }
-
 
   Assessment() {
     const QandA: any[] = [];
@@ -100,6 +98,17 @@ export class TechnicalFootPrintComponent implements OnInit {
     this.populateTheForm();
   }
 
+  onRadioChange(question: FormGroup, option: FormGroup) {
+    const options = question.get('Options') as FormArray;
+    options.controls.forEach((opt: FormGroup) => {
+      if (opt !== option) {
+        console.log(opt, 'opt');
+        console.log(option, 'option');
+        opt.get('OptionChecked')?.setValue(false);
+      }
+    });
+  }
+
   onKeyPress(event: KeyboardEvent) {
     const allowedChars = /[0-9]/;
     const key = event.key;
@@ -110,5 +119,6 @@ export class TechnicalFootPrintComponent implements OnInit {
 
   OnSubmit() {
     console.log(this.form.value, 'submit');
+    this.saveData();
   }
 }
