@@ -40,13 +40,13 @@ export class TechnicalFootPrintComponent implements OnInit {
     };
     this.http.post<any>(this.baseURL + "SaveCompanyComplianceData", body, options).subscribe(data => {
       // console.log('saved API');
-      // console.log(data);
     });
   }
 
   isButtonDisabled: boolean = true;
 
   ngOnInit(): void {
+    // Set a timeout to enable the button after 4 seconds
     setTimeout(() => {
       this.isButtonDisabled = false;
     }, 1500);
@@ -136,6 +136,7 @@ export class TechnicalFootPrintComponent implements OnInit {
   OnSubmit() {
     // console.log(this.form.value, 'submit');
     const optionsArray: any[] = this.form.value;
+    // console.log(optionsArray);
     for (const item of optionsArray['questions']) {
       for (const opt of item.Options) {
         if (opt['OptionChecked']) {
@@ -162,10 +163,7 @@ export class TechnicalFootPrintComponent implements OnInit {
           questionsValid.push(i);
         }
       }
-    }
-
-    for (var i = 0; i < 12; i++) {
-      if (!(questionsValid.includes(i))) {
+      if (!(questionsValid.includes(i)) || ((this.dataBeforeSubmit.controls[1].value.Options[0].OptionValue).length === 0 || (this.dataBeforeSubmit.controls[2].value.Options[0].OptionValue).length === 0 || (this.dataBeforeSubmit.controls[4].value.Options[0].OptionValue).length === 0)){
         state = true;
         break;
       }
