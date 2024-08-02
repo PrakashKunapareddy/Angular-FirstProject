@@ -14,6 +14,7 @@ export class TechnicalFootPrintComponent implements OnInit {
   TechnicalFootPrint: any[] = [];
   TechnicalFootprintDisplay = true;
   form: FormGroup;
+  pushedData: any[] = [];
 
   constructor(public http: HttpClient) {
     this.form = new FormGroup({
@@ -32,8 +33,13 @@ export class TechnicalFootPrintComponent implements OnInit {
     });
   }
 
-  saveData() {
-
+  saveData(body:any[]) {
+    const options: any = {
+      headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") }
+    };
+    this.http.post<any>(this.baseURL + "SaveCompanyComplianceData", body, options).subscribe(data => {
+      console.log('saved API');
+    });
   }
 
   ngOnInit() { }
@@ -119,6 +125,24 @@ export class TechnicalFootPrintComponent implements OnInit {
 
   OnSubmit() {
     console.log(this.form.value, 'submit');
-    this.saveData();
+    const optionsArray: any[] = this.form.value;
+    console.log(optionsArray);
+    for (const item of optionsArray['questions']) {
+      for (const opt of item.Options) {
+        if (opt['OptionChecked']) {
+          const obj = {
+            iSubCatID: opt['OptionID'],
+            iSubCategorymasterName: opt['OptionName'],
+            other: opt['OptionValue']
+          }
+          this.pushedData.push(obj);
+        }
+      }      
+    }
+    console.log(this.pushedData);
+    this.saveData(this.pushedData);
+  }
+  submitButton(){
+    
   }
 }

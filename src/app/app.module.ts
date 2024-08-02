@@ -33,7 +33,7 @@ import { TechnicalFootPrintComponent } from './technical-foot-print/technical-fo
     LoginPageComponent,
     TempDrivenFormComponent,
     ReactiveFormComponent,
-    TechnicalFootPrintComponent
+    TechnicalFootPrintComponent,
 
   ],
   providers: [
@@ -49,10 +49,10 @@ import { TechnicalFootPrintComponent } from './technical-foot-print/technical-fo
     FormsModule,
     HttpClientModule,
     UserComponent,
-    HomeworkComponent,
     HomeworkTwoComponent,
     HeaderComponent,
     ButtonUDComponent,
+    HomeworkComponent,
     FormexampleComponent,
     AppRouting,
     ReactiveFormsModule,

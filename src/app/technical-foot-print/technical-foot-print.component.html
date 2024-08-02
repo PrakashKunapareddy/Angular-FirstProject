@@ -22,6 +22,7 @@
                                    *ngIf="question.get('QuestionId').value !== 1 && question.get('QuestionId').value !== 11 && question.get('QuestionId').value !== 10 && question.get('QuestionId').value !== 15 && question.get('QuestionId').value !== 9" />
                             <input type="text" 
                                    class="form-control" 
+                                   required
                                    [formControlName]="'OptionValue'"
                                    *ngIf="question.get('QuestionId').value === 9" 
                                    (keypress)="onKeyPress($event)" />
