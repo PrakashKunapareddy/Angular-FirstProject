@@ -15,6 +15,7 @@ export class TechnicalFootPrintComponent implements OnInit {
   TechnicalFootprintDisplay = true;
   form: FormGroup;
   pushedData: any[] = [];
+  dataBeforeSubmit;
 
   constructor(public http: HttpClient) {
     this.form = new FormGroup({
@@ -29,20 +30,27 @@ export class TechnicalFootPrintComponent implements OnInit {
     };
     this.http.get<any[]>(this.baseURL + this.endPath, options).subscribe((data: any) => {
       this.MyJson = data;
-      console.log(this.MyJson);
+      // console.log(this.MyJson);
     });
   }
 
-  saveData(body:any[]) {
+  saveData(body: any[]) {
     const options: any = {
       headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") }
     };
     this.http.post<any>(this.baseURL + "SaveCompanyComplianceData", body, options).subscribe(data => {
-      console.log('saved API');
+      // console.log('saved API');
+      // console.log(data);
     });
   }
 
-  ngOnInit() { }
+  isButtonDisabled: boolean = true;
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isButtonDisabled = false;
+    }, 1500);
+  }
 
   populateTheForm() {
     const questionsArray = this.form.get('questions') as FormArray;
@@ -69,7 +77,9 @@ export class TechnicalFootPrintComponent implements OnInit {
 
       questionsArray.push(formGroup);
     });
-    console.log(questionsArray);
+    this.dataBeforeSubmit = questionsArray;
+    // console.log(this.dataBeforeSubmit);
+
   }
 
   Assessment() {
@@ -100,7 +110,7 @@ export class TechnicalFootPrintComponent implements OnInit {
     }
     this.TechnicalFootPrint = QandA;
     this.TechnicalFootprintDisplay = false;
-    console.log(this.TechnicalFootPrint);
+    // console.log(this.TechnicalFootPrint);
     this.populateTheForm();
   }
 
@@ -108,8 +118,8 @@ export class TechnicalFootPrintComponent implements OnInit {
     const options = question.get('Options') as FormArray;
     options.controls.forEach((opt: FormGroup) => {
       if (opt !== option) {
-        console.log(opt, 'opt');
-        console.log(option, 'option');
+        // console.log(opt, 'opt');
+        // console.log(option, 'option');
         opt.get('OptionChecked')?.setValue(false);
       }
     });
@@ -124,9 +134,8 @@ export class TechnicalFootPrintComponent implements OnInit {
   }
 
   OnSubmit() {
-    console.log(this.form.value, 'submit');
+    // console.log(this.form.value, 'submit');
     const optionsArray: any[] = this.form.value;
-    console.log(optionsArray);
     for (const item of optionsArray['questions']) {
       for (const opt of item.Options) {
         if (opt['OptionChecked']) {
@@ -137,12 +146,30 @@ export class TechnicalFootPrintComponent implements OnInit {
           }
           this.pushedData.push(obj);
         }
-      }      
+      }
     }
-    console.log(this.pushedData);
+    // console.log(this.pushedData);
     this.saveData(this.pushedData);
   }
-  submitButton(){
-    
+
+  submitButton() {
+    let state: boolean = false
+    let questionsValid: any[] = [];
+    for (var i = 0; i < 12; i++) {
+      for (var j = 0; j < (this.dataBeforeSubmit.controls[i].value.Options).length; j++) {
+        if (this.dataBeforeSubmit.controls[i].value.Options[j].OptionChecked) {
+          // console.log(i + ' ' + j);
+          questionsValid.push(i);
+        }
+      }
+    }
+
+    for (var i = 0; i < 12; i++) {
+      if (!(questionsValid.includes(i))) {
+        state = true;
+        break;
+      }
+    }
+    return state
   }
 }

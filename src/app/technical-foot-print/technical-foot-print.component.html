@@ -1,5 +1,7 @@
 <div *ngIf="TechnicalFootprintDisplay">
-    <button class="btn btn-primary" (click)="Assessment()">Technical FootPrint</button>
+    <button class="btn btn-primary" (click)="Assessment()" [disabled]="isButtonDisabled">
+        Technical FootPrint
+      </button>
 </div>
 <div *ngIf="!TechnicalFootprintDisplay">
     <div style="border: 2px solid white; background-color: beige; color: black; padding: 50px;">
@@ -53,7 +55,7 @@
                 </div>
             </div>
             <button class="btn btn-light" type="button" (click)="TechnicalFootprintDisplay = true" style="margin: 10px;">Cancel</button>
-            <button class="btn btn-primary" type="submit" style="margin: 10px;">Submit</button>
+            <button class="btn btn-primary" type="submit" style="margin: 10px;" [disabled]="submitButton()">Submit</button>
         </form>
     </div>
 </div>
